@@ -34,8 +34,6 @@ public class ProdutoDAO {
         }
     }
 
-
-
     public List<Produto> listaDeProdutosCadastrados() {
         String sql = """
                      select p.id_produto, c.nome_categoria as categoria,p.nome_produto,
@@ -55,11 +53,7 @@ public class ProdutoDAO {
     }
 
     public String exibirListaDeProdutos() {
-        String sql = """
-                     select p.id_produto, c.nome_categoria as categoria,p.nome_produto,
-                     p.preco_produto, p.estoque
-                     from produto p 
-                     join categoria c on p.id_categoria = c.id_categoria""";
+        String sql = "select * from vw_produtos_visao_geral where id_produto = ?";
         try {
             ResultSet result = conexao.obterConexao().prepareStatement(sql).executeQuery();
             StringBuilder sb = new StringBuilder();
@@ -89,11 +83,7 @@ public class ProdutoDAO {
     }
 
     public Produto buscarProdutoPorId(int id) {
-        String sql = """
-                     select p.id_produto, c.nome_categoria as categoria,p.nome_produto,
-                     p.preco_produto, p.estoque
-                     from produto p 
-                     join categoria c on p.id_categoria = c.id_categoria where id_produto = ?"""; 
+        String sql = "select * from vw_produtos_visao_geral where id_produto = ?";
         try {
             
             PreparedStatement stmt = conexao.obterConexao().prepareStatement(sql);
@@ -109,9 +99,11 @@ public class ProdutoDAO {
     }
 
     public Produto buscarProdutoPorNome(String nome) {
-        String sql = String.format("select * from produto where nome_produto = %s", nome);
+        String sql = "select * from vw_produtos_visao_geral where nome_produto = ?";
         try {
-            ResultSet result = conexao.obterConexao().prepareStatement(sql).executeQuery();
+            PreparedStatement stmt = conexao.obterConexao().prepareStatement(sql);
+            stmt.setString(1,nome);
+            ResultSet result = stmt.executeQuery();
             while (result.next()) {
                 return getProduto(result);
             }

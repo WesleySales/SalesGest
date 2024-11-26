@@ -8,8 +8,10 @@ import entities.CategoriaDAO;
 import entities.Produto;
 import entities.ProdutoDAO;
 import java.awt.Color;
+import java.awt.JobAttributes;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -162,10 +164,11 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         double preco = Double.parseDouble(txtPrecoProduto.getText());
         int estoque = Integer.parseInt(txtEstoqueProduto.getText());
 
-        int indexCategoria = cboxCategoriaProduto.getSelectedIndex();
-
+        int indexCategoria = cboxCategoriaProduto.getSelectedIndex();              
+              
         Produto p = new Produto(nome, preco, estoque, indexCategoria);
         pDAO.cadastrarProduto(p);
+        JOptionPane.showMessageDialog(rootPane, "Produto cadastrado com sucesso!");
 
     }//GEN-LAST:event_btnCadastrarProdutoActionPerformed
 

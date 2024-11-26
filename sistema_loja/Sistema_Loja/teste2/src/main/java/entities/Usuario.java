@@ -71,7 +71,7 @@ public class Usuario {
       
     @Override
     public String toString() {
-        return "ID: " + id + ", Nome: " + nome;
+        return "ID: " + id + ", Nome: " + nome + ", Cargo: " + getCargo();
     }
     
     

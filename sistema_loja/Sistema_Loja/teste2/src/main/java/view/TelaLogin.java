@@ -7,6 +7,7 @@ package view;
 import Autenticacao.Autenticacao;
 import Autenticacao.LoginDTO;
 import entities.Usuario;
+import entities.UsuarioCargoEnum;
 import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -17,31 +18,32 @@ import javax.swing.JTextField;
  *
  * @author wesle
  */
-public class Login extends javax.swing.JFrame {
+public class TelaLogin extends javax.swing.JFrame {
 
     /**
      * Creates new form Login
      */
-    public Login() {
+    public TelaLogin() {
         initComponents();
         configurarPlaceholder(txtLogin, "Digite o login...");
         configurarPlaceholder(txtSenha, "Digite a senha...");
     }
-    
+
     public static String guardarLogin;
-    
+
     private void configurarPlaceholder(JTextField textField, String placeholder) {
         textField.setText(placeholder);
         textField.setForeground(Color.GRAY);
 
         textField.addFocusListener(new FocusListener() {
-            
+
             public void focusGained(FocusEvent e) {
                 if (textField.getText().equals(placeholder)) {
                     textField.setText("");
                     textField.setForeground(Color.BLACK); // Cor do texto normal
                 }
             }
+
             public void focusLost(FocusEvent e) {
                 if (textField.getText().isEmpty()) {
                     textField.setText(placeholder);
@@ -50,6 +52,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -155,34 +158,32 @@ public class Login extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        
-        
+
         String login = txtLogin.getText();
         String senha = txtSenha.getText();
-        
-        if(txtLogin.getText().equalsIgnoreCase("Digite o Login...") || 
-                txtSenha.getText().equalsIgnoreCase("Digite a senha...")){
+
+        if (txtLogin.getText().equalsIgnoreCase("Digite o Login...")
+                || txtSenha.getText().equalsIgnoreCase("Digite a senha...")) {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos");
         }
-        
-        LoginDTO novoLogin = new LoginDTO(login,senha);
+
+        LoginDTO novoLogin = new LoginDTO(login, senha);
         Autenticacao autenticacao = new Autenticacao();
-        
+
         Usuario usuario = autenticacao.login(novoLogin);
-        
-        if(usuario==null){
-            JOptionPane.showMessageDialog(null, "Acesso Negado");
+
+        if (usuario == null) {
+            JOptionPane.showMessageDialog(null, "Acesso negado. Login ou Senha inválidos!");
         }
-        if(usuario!=null){
+        if (usuario != null) {
             guardarLogin = login;
-            this.dispose();
-            PainelPrimario telaPrincipal = new PainelPrimario();
+            var telaPrincipal = new PainelPrimario();
             telaPrincipal.setVisible(true);
             telaPrincipal.setLocationRelativeTo(null);
         }
-        
+
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoginActionPerformed
@@ -216,20 +217,21 @@ public class Login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                new TelaLogin().setVisible(true);
             }
         });
     }
