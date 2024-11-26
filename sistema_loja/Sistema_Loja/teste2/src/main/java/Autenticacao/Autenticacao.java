@@ -25,6 +25,6 @@ public class Autenticacao {
     }
     
     private boolean validarSenha(String senhaPreenchida, String senhaUsuario){
-        return senhaPreenchida.equalsIgnoreCase(senhaUsuario);
+        return senhaPreenchida.equals(senhaUsuario);
     }
 }

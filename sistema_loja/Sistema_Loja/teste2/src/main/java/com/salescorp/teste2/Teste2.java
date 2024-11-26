@@ -23,8 +23,11 @@ public class Teste2 {
         Conexao conexao = new ConexaoMysql();
         
         Usuario novoUsuario = new Usuario("Novo", "Teste","WesleySales12", "4444");
+        var usuarioDAO = new UsuarioDAO();
 //        
-        CategoriaDAO cat = new CategoriaDAO();
+
+        System.out.println(usuarioDAO.buscarUsuarioPorId(1));
+//        CategoriaDAO cat = new CategoriaDAO();
         
 //        Categoria novaCat = new Categoria("TESTANDO");
 //        cat.cadastrarCategoria(novaCat);
@@ -33,12 +36,13 @@ public class Teste2 {
 //        System.out.println(cat.buscarCategoriaPorId(2));
 //        System.out.println(cat.buscarCategoriaPorId(5));
         
-        ProdutoDAO pDAO = new ProdutoDAO();
-//        Produto produto = new Produto("Novo Exemplo", 100, 50, 4);
+//        ProdutoDAO pDAO = new ProdutoDAO();
+//        Produto produto = new Produto("Nohig", 0, 0, 4);
         
 //        pDAO.cadastrarProduto(produto);
-        System.out.println(pDAO.exibirListaDeProdutos());
+//        System.out.println(pDAO.exibirListaDeProdutos());
                
-//        System.out.println(produto);
+//        produto.exibirProduto();
+//        System.out.println(cat.buscarCategoriaPorId(1));
     }
 }

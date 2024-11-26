@@ -240,7 +240,7 @@ public class TelaProdutos extends javax.swing.JFrame {
             produto.deletarProduto(id_produto);
             JOptionPane.showMessageDialog(rootPane, "Produto deletado com sucesso");
         } else {
-            JOptionPane.showMessageDialog(this, "Selecione uma receita para DELETAR.");
+            JOptionPane.showMessageDialog(this, "Selecione um produto para DELETAR.");
         }
         
         exibirListaDeProdutos();
@@ -263,7 +263,7 @@ public class TelaProdutos extends javax.swing.JFrame {
             exibirListaDeProdutos();
 
         } else {
-            JOptionPane.showMessageDialog(this, "Selecione uma receita para DELETAR.");
+            JOptionPane.showMessageDialog(this, "Selecione um produto para DELETAR.");
         }
     }//GEN-LAST:event_btnEditarProdutoActionPerformed
 
