@@ -2,16 +2,17 @@ package com.salescorp.teste2;
 
 import conexao.Conexao;
 import conexao.ConexaoMysql;
-import entities.Categoria;
-import entities.CategoriaDAO;
-import entities.Produto;
-import entities.ProdutoDAO;
-import entities.Usuario;
-import entities.UsuarioDAO;
+import entities.produto.Categoria;
+import entities.produto.CategoriaDAO;
+import entities.produto.Produto;
+import entities.produto.ProdutoDAO;
+import entities.funcionario.Usuario;
+import entities.funcionario.UsuarioDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import view.TelaProdutos;
+import javax.smartcardio.Card;
+import view.produto.TelaProdutos;
 
 /**
  *
@@ -26,11 +27,17 @@ public class Teste2 {
         
         var userTeste = new Usuario("Exemplo", "Junior", "99889988", "exjunio", "1234", 2);
         
-        System.out.println(userTeste);
+//        System.out.println(userTeste);
+        var cargoDAO = new CategoriaDAO();
         
-        userDAO.cadastrarUsuario(userTeste);
-        System.out.println(userDAO.buscarUsuarioPorId(1));
-        System.out.println(userDAO.buscarUsuarioPorId(6));
+        ProdutoDAO produtos = new ProdutoDAO();
+        
+//        produtos.listaDeProdutosCadastrados();
+//        System.out.println(cargoDAO.buscarCategoriaPorId(1));
+        
+        System.out.println(userDAO.listarTodosUsuarios());
+//        System.out.println(userDAO.buscarUsuarioPorId(1));
+//        System.out.println(userDAO.buscarUsuarioPorId(6));
         
     }
 }
