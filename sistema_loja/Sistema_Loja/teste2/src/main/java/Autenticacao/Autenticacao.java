@@ -1,8 +1,8 @@
 
 package Autenticacao;
 
-import entities.Usuario;
-import entities.UsuarioDAO;
+import entities.funcionario.Usuario;
+import entities.funcionario.UsuarioDAO;
 
 
 public class Autenticacao {
