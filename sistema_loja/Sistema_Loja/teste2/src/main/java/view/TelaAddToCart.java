@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author wesle
  */
-public class TelaProdutos extends javax.swing.JFrame {
+public class TelaAddToCart extends javax.swing.JFrame {
 
     /**
      * Creates new form TelaProdutos
@@ -27,7 +27,7 @@ public class TelaProdutos extends javax.swing.JFrame {
     private ProdutoDAO produto;
     private CategoriaDAO categoria;
 
-    public TelaProdutos() {
+    public TelaAddToCart() {
         initComponents();
         this.produto = new ProdutoDAO();
         this.categoria = new CategoriaDAO();
@@ -48,12 +48,11 @@ public class TelaProdutos extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        btnCadastrarProduto = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblProdutos = new javax.swing.JTable();
         btnCadastrarProduto1 = new javax.swing.JButton();
-        btnDeletarProduto = new javax.swing.JButton();
-        btnEditarProduto = new javax.swing.JButton();
+        spinQuantidade = new javax.swing.JSpinner();
+        jButton2 = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -64,33 +63,35 @@ public class TelaProdutos extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 51));
 
-        btnCadastrarProduto.setText("CADASTRAR NOVO PRODUTO");
-        btnCadastrarProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarProdutoActionPerformed(evt);
-            }
-        });
-
         tblProdutos.setAutoCreateRowSorter(true);
         tblProdutos.setBackground(new java.awt.Color(0, 51, 51));
         tblProdutos.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tblProdutos.setForeground(new java.awt.Color(255, 255, 255));
         tblProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "ID", "CATEGORIA", "PRODUTO", "PREÇO", "ESTOQUE"
+                "PRODUTO", "PREÇO"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -102,9 +103,6 @@ public class TelaProdutos extends javax.swing.JFrame {
             }
         });
         jScrollPane2.setViewportView(tblProdutos);
-        if (tblProdutos.getColumnModel().getColumnCount() > 0) {
-            tblProdutos.getColumnModel().getColumn(0).setPreferredWidth(20);
-        }
 
         btnCadastrarProduto1.setBackground(new java.awt.Color(255, 51, 51));
         btnCadastrarProduto1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -116,53 +114,36 @@ public class TelaProdutos extends javax.swing.JFrame {
             }
         });
 
-        btnDeletarProduto.setText("DELETAR");
-        btnDeletarProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeletarProdutoActionPerformed(evt);
-            }
-        });
-
-        btnEditarProduto.setText("EDITAR");
-        btnEditarProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarProdutoActionPerformed(evt);
-            }
-        });
+        jButton2.setText("ADICIONAR AO CARRINHO");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnCadastrarProduto1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 681, Short.MAX_VALUE)
+                .addComponent(btnCadastrarProduto1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnCadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(217, 217, 217)
-                                .addComponent(btnEditarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnDeletarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(50, Short.MAX_VALUE))))
+                        .addComponent(spinQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(48, 48, 48))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(btnCadastrarProduto1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEditarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDeletarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42))
+                    .addComponent(spinQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addGap(38, 38, 38)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -194,11 +175,8 @@ public class TelaProdutos extends javax.swing.JFrame {
         if (!produtos.isEmpty()) {
             for (Produto p : produtos) {
                 model.addRow(new Object[]{
-                    p.getId(),
-                    p.getCategoria().getNome_categoria(),
                     p.getNome(),
-                    p.getPreco(),
-                    p.getEstoque()
+                    p.getPreco()
                 });
             }
         } else {
@@ -208,55 +186,9 @@ public class TelaProdutos extends javax.swing.JFrame {
 
     }
 
-//    public void exibirListaDeProdutos(){
-//        ProdutoDAO produto = new ProdutoDAO();
-////        txtAreaProdutos.setText(produto.exibirListaDeProdutos());
-//    }
-
-    private void btnCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProdutoActionPerformed
-        TelaCadastroProduto telaCadastro = new TelaCadastroProduto();
-        telaCadastro.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_btnCadastrarProdutoActionPerformed
-
     private void btnCadastrarProduto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProduto1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCadastrarProduto1ActionPerformed
-
-    private void btnDeletarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarProdutoActionPerformed
-        int selecionado = tblProdutos.getSelectedRow();
-
-        if (selecionado != -1) {
-            int id_produto = (int) tblProdutos.getValueAt(selecionado, 0);
-            produto.deletarProduto(id_produto);
-            JOptionPane.showMessageDialog(rootPane, "Produto deletado com sucesso");
-        } else {
-            JOptionPane.showMessageDialog(this, "Selecione um produto para DELETAR.");
-        }
-        
-        exibirListaDeProdutos();
-    }//GEN-LAST:event_btnDeletarProdutoActionPerformed
-
-    private void btnEditarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProdutoActionPerformed
-        int selecionado = tblProdutos.getSelectedRow();
-
-        if (selecionado != -1) {
-            int id_produto = (int) tblProdutos.getValueAt(selecionado, 0);
-            var p = produto.buscarProdutoPorId(id_produto);
-
-            String novoNome = JOptionPane.showInputDialog(rootPane, "Editando: " + p.getNome() + ". Digite o novo nome: ");
-            double novoPreco = Double.parseDouble(JOptionPane.showInputDialog(rootPane, "Editando: " + p.getNome() + ". Digite o novo preco: "));
-            int novoEstoque = Integer.parseInt(JOptionPane.showInputDialog(rootPane, "Editando: " + p.getNome() + ". Digite o novo estoque: "));
-
-            String resultado = produto.editarProduto(novoNome, novoPreco, novoEstoque, id_produto);
-
-            JOptionPane.showMessageDialog(rootPane, p.getNome() + " - " + resultado);
-            exibirListaDeProdutos();
-
-        } else {
-            JOptionPane.showMessageDialog(this, "Selecione um produto para DELETAR.");
-        }
-    }//GEN-LAST:event_btnEditarProdutoActionPerformed
 
     private void configurarPlaceholder(JTextField textField, String placeholder) {
         textField.setText(placeholder);
@@ -297,34 +229,35 @@ public class TelaProdutos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaAddToCart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaAddToCart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaAddToCart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaProdutos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaAddToCart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaProdutos().setVisible(true);
+                new TelaAddToCart().setVisible(true);
             }
         });
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCadastrarProduto;
     private javax.swing.JButton btnCadastrarProduto1;
-    private javax.swing.JButton btnDeletarProduto;
-    private javax.swing.JButton btnEditarProduto;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSpinner spinQuantidade;
     private javax.swing.JTable tblProdutos;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,7 +5,6 @@
 package view;
 
 import entities.Usuario;
-import entities.UsuarioCargoEnum;
 import entities.UsuarioDAO;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -184,7 +183,7 @@ public class PainelPrimario extends javax.swing.JFrame {
         Usuario funcionario = new Usuario();
         funcionario = u.buscarUsuarioPeloLogin(TelaLogin.guardarLogin);
         
-        if(funcionario.getCargo() == UsuarioCargoEnum.GERENTE){
+        if(funcionario.getCargo().getId_cargo() == 1){
             tela.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(rootPane, "Você não tem permissão para acessar este módulo!\nCargo requerido 'GERENTE'");
@@ -200,7 +199,7 @@ public class PainelPrimario extends javax.swing.JFrame {
         Usuario funcionario = new Usuario();
         funcionario = u.buscarUsuarioPeloLogin(TelaLogin.guardarLogin);
         
-        if(funcionario.getCargo() == UsuarioCargoEnum.GERENTE){
+        if(funcionario.getCargo().getId_cargo() == 1){
             var tela = new CadastroFuncionario();
             tela.setVisible(true);
         } else {

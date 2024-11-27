@@ -155,7 +155,6 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private ProdutoDao produtoDao;
 
     private void btnCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProdutoActionPerformed
         ProdutoDAO pDAO = new ProdutoDAO();

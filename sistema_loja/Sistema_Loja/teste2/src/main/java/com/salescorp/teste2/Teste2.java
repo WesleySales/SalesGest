@@ -22,27 +22,15 @@ public class Teste2 {
     public static void main(String[] args) throws SQLException {
         Conexao conexao = new ConexaoMysql();
         
-        Usuario novoUsuario = new Usuario("Novo", "Teste","WesleySales12", "4444");
-        var usuarioDAO = new UsuarioDAO();
-//        
-
-        System.out.println(usuarioDAO.buscarUsuarioPorId(1));
-//        CategoriaDAO cat = new CategoriaDAO();
+        UsuarioDAO userDAO = new UsuarioDAO();
         
-//        Categoria novaCat = new Categoria("TESTANDO");
-//        cat.cadastrarCategoria(novaCat);
+        var userTeste = new Usuario("Exemplo", "Junior", "99889988", "exjunio", "1234", 2);
         
-//        System.out.println(cat.buscarCategoriaPorId(1));
-//        System.out.println(cat.buscarCategoriaPorId(2));
-//        System.out.println(cat.buscarCategoriaPorId(5));
+        System.out.println(userTeste);
         
-//        ProdutoDAO pDAO = new ProdutoDAO();
-//        Produto produto = new Produto("Nohig", 0, 0, 4);
+        userDAO.cadastrarUsuario(userTeste);
+        System.out.println(userDAO.buscarUsuarioPorId(1));
+        System.out.println(userDAO.buscarUsuarioPorId(6));
         
-//        pDAO.cadastrarProduto(produto);
-//        System.out.println(pDAO.exibirListaDeProdutos());
-               
-//        produto.exibirProduto();
-//        System.out.println(cat.buscarCategoriaPorId(1));
     }
 }

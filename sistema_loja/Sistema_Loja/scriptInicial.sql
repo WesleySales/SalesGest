@@ -29,43 +29,31 @@ create table produto(
     estoque int
 );
 
-insert into funcionario (nome_funcionario, sobrenome_funcionario, login_funcionario, senha_funcionario) values
-("Wesley","Sales","wesleysales12","senha123"),
-("Juan","Sales","juansales20","senha123"),
-("Henrique","Sales","henriquesales11","senha123"),
-("Maria","Carmo","mariadocarmo","senha123"),
-("Inara", "Silva","inaraai","senha123");
-
-insert into cargo_funcionario ( nome_cargo) values 
-("GERENTE"),
-("VENDEDOR");
-
-insert into produto (nome_produto, preco_produto,estoque) values 
-("PS5 SLIM",5000,60),
-("Samsung Galaxy S24 Ultra",6500,100),
-("Notebook Dell Inspiron 3000",3199,200),
-("Iphone 15 Pro Max",7399,60),
-("Notebook Acer Nitro 5",5500,200);
-
-
+-- selects
+select * from cargo_funcionario;
+select * from funcionario;
+select * from categoria;
 select * from produto;
 
-alter table produto
-add column id_categoria int;
+-- create views
+
+-- visualização geral dos produtos
+create view vw_produtos_visao_geral as (
+	select p.id_produto, c.nome_categoria as categoria,p.nome_produto,
+	p.preco_produto, p.estoque
+	from produto p 
+	join categoria c on p.id_categoria = c.id_categoria 
+);
+select * from vw_produtos_visao_geral;
 
 
+-- visualização geral dos funcionários
+create view vw_funcionario_geral as (
+	select f.id_funcionario,f.nome_funcionario, f.sobrenome_funcionario, f.login_funcionario, 
+    f.senha_funcionario, cf.nome_cargo as cargo 
+	from funcionario f
+	join cargo_funcionario cf on f.id_cargo=cf.id_cargo
+);
 
-insert into categoria (nome_categoria) values
-("Eletronico"),
-("Vestuário"),
-("Alimento"),
-("Escritorio");
-
-
-select * from categoria;
-
-select p.id_produto as id, c.nome_categoria as categoria,p.nome_produto as produto,
-p.preco_produto as preco, p.estoque
-from produto p
-join categoria c on p.id_categoria = c.id_categoria;
+select * from vw_funcionario_geral;
 

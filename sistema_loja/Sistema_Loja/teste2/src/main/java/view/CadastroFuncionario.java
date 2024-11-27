@@ -61,7 +61,6 @@ public class CadastroFuncionario extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
-        btnCadastrarFuncionario = new javax.swing.JButton();
         txtSobrenome = new javax.swing.JTextField();
         txtNome = new javax.swing.JTextField();
         txtLoginUsuario = new javax.swing.JTextField();
@@ -79,14 +78,6 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
-
-        btnCadastrarFuncionario.setBackground(new java.awt.Color(0, 153, 51));
-        btnCadastrarFuncionario.setText("CADASTRAR");
-        btnCadastrarFuncionario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCadastrarFuncionarioActionPerformed(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Yu Gothic Light", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -120,25 +111,23 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                            .addComponent(txtSobrenome))
-                        .addGap(18, 18, 18)
-                        .addComponent(txtLoginUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtSenhaConfirmacao, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnCadastrarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                                    .addComponent(txtSobrenome))
+                                .addGap(18, 18, 18)
+                                .addComponent(txtLoginUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtSenhaConfirmacao, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 22, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -158,9 +147,8 @@ public class CadastroFuncionario extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSobrenome, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSenhaConfirmacao)
-                    .addComponent(btnCadastrarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                    .addComponent(txtSenhaConfirmacao))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
@@ -168,33 +156,6 @@ public class CadastroFuncionario extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnCadastrarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarFuncionarioActionPerformed
-        String nome = txtNome.getText();
-        String sobrenome = txtSobrenome.getText();
-        String login = txtLoginUsuario.getText();
-        String senha = txtSenha.getText();
-        String senhaConfirmacao = txtSenhaConfirmacao.getText();
-        
-        if(senha.equalsIgnoreCase(senhaConfirmacao)){
-            Usuario novoUsuario = new Usuario(nome, sobrenome, login, senha);
-            UsuarioDAO u = new UsuarioDAO();
-            
-            String mensagem = u.salvarUsuario(novoUsuario);    
-            
-            JOptionPane.showMessageDialog(null, mensagem);
-            
-            if(mensagem.equalsIgnoreCase("Usuário cadastrado com sucesso")){
-                this.dispose();
-                TelaLogin telaLogin = new TelaLogin();
-                telaLogin.setVisible(true);
-            }
-        } else {
-            JOptionPane.showMessageDialog(null,"As senhas devem ser iguais");
-        }
-                
-        
-    }//GEN-LAST:event_btnCadastrarFuncionarioActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         dispose();
@@ -236,7 +197,6 @@ public class CadastroFuncionario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCadastrarFuncionario;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
