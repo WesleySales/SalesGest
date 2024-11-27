@@ -20,20 +20,27 @@ public class UsuarioDAO {
         return usuario.getId() == null ? cadastrarUsuario(usuario) : editarUsuario(usuario);
     }
 
-    private String cadastrarUsuario(Usuario usuario) {
+    public String cadastrarUsuario(Usuario usuario) {
         String sql = "insert into funcionario (nome_funcionario, sobrenome_funcionario,"
-                + " login_funcionario, senha_funcionario) values(?,?,?,?)";
+                + " telefone_funcionario,login_funcionario, senha_funcionario,id_cargo) values(?,?,?,?,?,?)";
         try {
             if (buscarUsuarioPeloLogin(usuario.getLogin()) != null) {
                 return "Erro: Já existe um usuário com este login.";
             }
-
             PreparedStatement preparedStatement = conexao.obterConexao().prepareStatement(sql);
-            preencherValores(preparedStatement, usuario);
+            
+            preparedStatement.setString(1, usuario.getNome());
+            preparedStatement.setString(2, usuario.getSobrenome());
+            preparedStatement.setString(3, usuario.getTelefone());
+            preparedStatement.setString(4, usuario.getLogin());
+            preparedStatement.setString(5, usuario.getSenha());       
+            preparedStatement.setInt(6, usuario.getCargo().getId_cargo());   
+            
+//            preencherValores(preparedStatement, usuario);
+//            System.out.format("ate aqui tudo bem, funcionario %s esta sendo cadastrado", usuario.getNome().toUpperCase());
 
             int resultado = preparedStatement.executeUpdate();
             return resultado == 1 ? "Usuário cadastrado com sucesso" : "Ocorreu um erro ao cadastrar o usuário.";
-
         } catch (SQLException e) {
             return String.format("Erro: %s", e.getMessage());
         }
@@ -58,8 +65,10 @@ public class UsuarioDAO {
     private void preencherValores(PreparedStatement preparedStatement, Usuario usuario) throws SQLException {
         preparedStatement.setString(1, usuario.getNome());
         preparedStatement.setString(2, usuario.getSobrenome());
-        preparedStatement.setString(3, usuario.getLogin());
-        preparedStatement.setString(4, usuario.getSenha());
+        preparedStatement.setString(3, usuario.getTelefone());
+        preparedStatement.setString(4, usuario.getLogin());
+        preparedStatement.setString(5, usuario.getSenha());       
+        preparedStatement.setInt(6, usuario.getCargo().getId_cargo());       
     }
 
     public List<Usuario> listarTodosUsuarios() {
@@ -84,8 +93,11 @@ public class UsuarioDAO {
         usuario.setSobrenome(resultado.getString("sobrenome_funcionario"));
         usuario.setLogin(resultado.getString("login_funcionario"));
         usuario.setSenha(resultado.getString("senha_funcionario"));
-        String cargo = resultado.getString("cargo");
-        usuario.setCargo(UsuarioCargoEnum.valueOf(cargo.toUpperCase()));
+        
+        var cargo = new CargoFuncionario();
+        cargo.setNome_cargo(resultado.getString("cargo"));
+        usuario.setCargo(cargo);
+        
         return usuario;
     }
 

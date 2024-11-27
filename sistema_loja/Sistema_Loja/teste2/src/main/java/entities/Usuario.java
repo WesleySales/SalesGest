@@ -4,20 +4,25 @@ public class Usuario {
     private Integer id;
     private String nome;
     private String sobrenome;
+    private String telefone;
     private String login;
     private String senha;
-    private UsuarioCargoEnum cargo;
-
-    public Usuario(String nome, String sobrenome, String login, String senha) {
-        this.nome = nome;
-        this.sobrenome = sobrenome;
-        this.login = login;
-        this.senha = senha;
+    private CargoFuncionario cargo;
+//    
+//    private UsuarioDAO userDAO;
+    CargoFuncionarioDAO c = new CargoFuncionarioDAO();
+    
+    public Usuario(){        
     }
     
-   
-    
-    public Usuario(){
+
+    public Usuario(String nome, String sobrenome, String telefone, String login, String senha, int id_cargo) {
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.telefone = telefone;
+        this.login = login;
+        this.senha = senha;
+        this.cargo = c.buscarCargoPorId(id_cargo);
     }
 
     public Integer getId() {
@@ -35,6 +40,11 @@ public class Usuario {
     public String getSenha() {
         return senha;
     }
+
+    public String getTelefone() {
+        return telefone;
+    }
+    
 
     public void setSenha(String senha) {
         this.senha = senha;
@@ -61,17 +71,17 @@ public class Usuario {
         this.login = login;
     }
 
-    public UsuarioCargoEnum getCargo() {
+    public CargoFuncionario getCargo() {
         return cargo;
     }
 
-    public void setCargo(UsuarioCargoEnum cargo) {
+    public void setCargo(CargoFuncionario cargo) {
         this.cargo = cargo;
     }
       
     @Override
     public String toString() {
-        return "ID: " + id + ", Nome: " + nome + ", Cargo: " + getCargo();
+        return "ID: " + id + ", Nome: " + nome + ", Cargo: " + getCargo().getNome_cargo();
     }
     
     
