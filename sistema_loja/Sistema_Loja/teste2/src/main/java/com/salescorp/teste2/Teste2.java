@@ -8,6 +8,9 @@ import entities.produto.Produto;
 import entities.produto.ProdutoDAO;
 import entities.funcionario.Usuario;
 import entities.funcionario.UsuarioDAO;
+import entities.venda.ItemVenda;
+import entities.venda.ItemVendaDAO;
+import entities.venda.VendaDAO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -32,12 +35,23 @@ public class Teste2 {
         
         ProdutoDAO produtos = new ProdutoDAO();
         
-//        produtos.listaDeProdutosCadastrados();
-//        System.out.println(cargoDAO.buscarCategoriaPorId(1));
+//        Produto p1 = produtos.buscarProdutoPorId(8);
+//        Produto p2 = produtos.buscarProdutoPorId(3);
+//        Produto p3 = produtos.buscarProdutoPorId(4);
+//        
+//        System.out.println(p2);
+//        
+//        ItemVenda item = new ItemVenda(produtos.buscarProdutoPorId(2), 2);
+//        System.out.println("Exibindo item do carrinho: \n\n");
+//        System.out.println(item);
         
-        System.out.println(userDAO.listarTodosUsuarios());
-//        System.out.println(userDAO.buscarUsuarioPorId(1));
-//        System.out.println(userDAO.buscarUsuarioPorId(6));
+        var itemDAO = new ItemVendaDAO();
+//        System.out.println(itemDAO.criarItem(p1, 3,1));
+//        System.out.println(itemDAO.criarItem(p2, 2,1));
+//        System.out.println(itemDAO.criarItem(p3, 3,1));
         
+        var vendaDAO = new VendaDAO();
+        
+        System.out.println(vendaDAO.buscarVendaPorId(1));
     }
 }
