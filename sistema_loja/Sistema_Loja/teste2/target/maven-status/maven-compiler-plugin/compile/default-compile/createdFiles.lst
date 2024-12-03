@@ -7,10 +7,12 @@ view\main\TelaLogin$5.class
 view\funcionario\TelaCadastroFuncionario$1.class
 view\produto\TelaProdutos$6.class
 view\main\TelaLogin$1.class
+entities\venda\ItemVendaDAO.class
 view\main\TelaMenuPrincipal$1.class
 view\produto\TelaProdutos$2.class
 conexao\Conexao.class
 view\vendas\TelaAddToCart$4.class
+entities\venda\Venda.class
 entities\produto\CategoriaDAO.class
 view\funcionario\TelaCadastroFuncionario$4.class
 view\funcionario\CadastroFuncionario$3.class
@@ -20,6 +22,7 @@ view\funcionario\TelaCadastroFuncionario$2.class
 view\main\TelaMenuPrincipal$4.class
 view\funcionario\CadastroFuncionario$5.class
 view\produto\TelaProdutos.class
+entities\venda\ItemVenda.class
 view\main\TelaLogin$2.class
 Autenticacao\Autenticacao.class
 view\produto\TelaCadastroProduto$1.class
@@ -29,6 +32,7 @@ view\funcionario\CadastroFuncionario$2.class
 view\produto\TelaCadastroProduto$4.class
 entities\funcionario\CargoFuncionario.class
 view\produto\TelaCadastroProduto.class
+view\vendas\TelaAddToCart$5.class
 view\funcionario\CadastroFuncionario.class
 view\funcionario\CadastroFuncionario$4.class
 view\main\TelaMenuPrincipal$3.class
@@ -53,6 +57,7 @@ entities\produto\Produto.class
 view\main\TelaMenuPrincipal.class
 view\vendas\TelaAddToCart$3.class
 com\salescorp\teste2\Teste2.class
+entities\venda\VendaDAO.class
 view\funcionario\CadastroFuncionario$7.class
 view\funcionario\TelaCadastroFuncionario$6.class
 Autenticacao\LoginDTO.class
