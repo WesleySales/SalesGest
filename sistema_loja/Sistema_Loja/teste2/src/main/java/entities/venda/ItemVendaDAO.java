@@ -7,6 +7,8 @@ import entities.produto.ProdutoDAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ItemVendaDAO {
     private Conexao conexao;
@@ -14,25 +16,38 @@ public class ItemVendaDAO {
     public ItemVendaDAO() {
         this.conexao = new ConexaoMysql();
     }
+    
+    public String criarItem(ItemVenda item){
 
-    
-    
-    
-    public String criarItem(Produto produto, int quantidade, int id_venda){
-
-        String sql = "insert into Item_Venda (id_produto, quantidade_produto,valor_item,id_venda) values (?,?,?,?)";
-        double valorItem = calcularValorItem(produto, quantidade); //retorna o valor do item e atribui a minha variavel        
+        String sql = "insert into Item_Venda (id_produto, quantidade_produto,valor_item, id_venda) values (?,?,?,?)";
+        double valorItem = calcularValorItem(item.getProduto(), item.getQuantidade()); //retorna o valor do item e atribui a minha variavel        
         
         try {
             
             PreparedStatement preparedStatement = conexao.obterConexao().prepareStatement(sql);
-            preparedStatement.setInt(1, produto.getId());
-            preparedStatement.setInt(2, quantidade);
-            preparedStatement.setDouble(3, valorItem);
-            preparedStatement.setInt(4, id_venda);
+            preparedStatement.setInt(1, item.getProduto().getId());
+            preparedStatement.setInt(2, item.getQuantidade());
+            preparedStatement.setDouble(3, item.getValorItem());
+            preparedStatement.setInt(4, item.getVenda().getId());
             
             preparedStatement.executeUpdate();
             return "Item cadastrado com sucesso";
+            
+        } catch (SQLException e) {
+            return String.format("Error: %s", e.getMessage());
+        }
+    }
+    
+    public String editarItem(int id_produto, int quantidade){
+        String sql = "update item_venda set quantidade_produto = ? where id_produto=?";
+        
+        try {
+            PreparedStatement preparedStatement = conexao.obterConexao().prepareStatement(sql);
+            preparedStatement.setInt(1, quantidade);
+            preparedStatement.setInt(2, id_produto);
+            
+            preparedStatement.executeUpdate();
+            return "Item editado com sucesso";
             
         } catch (SQLException e) {
             return String.format("Error: %s", e.getMessage());
@@ -43,15 +58,27 @@ public class ItemVendaDAO {
        return produto.getPreco()*quantidade;
     }
     
-    public ItemVenda buscarItem(Produto p, int id_venda){
-        String sql = "select p.id_produto, p.nome_produto, iv.id_venda \n" +
-        "from produto p, item_venda iv\n" +
-        "where p.id_produto =? = iv.id_produto=?";
+    public List<ItemVenda> listaDeItens() {
+        String sql = "select * from vw_item_venda";
+        List<ItemVenda> listaDeItens = new ArrayList<>();
+        try {
+            ResultSet result = conexao.obterConexao().prepareStatement(sql).executeQuery();
+            while (result.next()) {
+                listaDeItens.add(getItem(result));
+            }
+        } catch (SQLException e) {
+            System.out.println(String.format("Error: %s", e.getMessage()));
+        }
+        return listaDeItens;
+    }
+    
+    public ItemVenda buscarItem(int id_produto, int id_venda){
+        String sql = "select * from vw_item_venda where codigo=?";
         
         try{
             PreparedStatement preparedStatement = conexao.obterConexao().prepareStatement(sql);
-            preparedStatement.setInt(1, p.getId());
-            preparedStatement.setInt(2, id_venda);
+            preparedStatement.setInt(1, id_produto);
+//            preparedStatement.setInt(2, id_venda);
             
             ResultSet result = preparedStatement.executeQuery();
             while (result.next()) {
@@ -68,10 +95,13 @@ public class ItemVendaDAO {
         var pDAO = new ProdutoDAO();
         var vendaDAO = new VendaDAO();
         
-        item.setProduto(pDAO.buscarProdutoPorId(resultado.getInt("nome_produto")));
-        item.setQuantidade(resultado.getInt("quantidade_produto"));
-        item.setVenda(vendaDAO.buscarVendaPorId(resultado.getInt("id_venda")));            
+        item.setId(resultado.getInt("Codigo"));
+        item.setProduto(pDAO.buscarProdutoPorNome(resultado.getString("produto")));
+        item.setQuantidade(resultado.getInt("quantidade"));
+        item.setValorItem(resultado.getDouble("valor"));           
         
         return item;
     }
+    
+    
 }

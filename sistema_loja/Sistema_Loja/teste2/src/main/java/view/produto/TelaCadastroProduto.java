@@ -11,6 +11,8 @@ import java.awt.Color;
 import java.awt.JobAttributes;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.sql.SQLException;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -30,9 +32,8 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         initComponents();
         this.produto = new ProdutoDAO();
         this.categoria = new CategoriaDAO();
-        configurarPlaceholder(txtNomeProduto, "Digite o nome...");
-        configurarPlaceholder(txtPrecoProduto, "Digite o preco...");
-        configurarPlaceholder(txtEstoqueProduto, "Digite o estoque...");
+        ativarPlaceHolder();
+        carregarCategorias();
     }
 
     /**
@@ -82,6 +83,11 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         });
 
         cboxCategoriaProduto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione a categoria", "Eletrônico", "Vestuário", "Alimento", "Escritório" }));
+        cboxCategoriaProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboxCategoriaProdutoActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -155,6 +161,12 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ativarPlaceHolder(){
+        configurarPlaceholder(txtNomeProduto, "Digite o nome...");
+        configurarPlaceholder(txtPrecoProduto, "Digite o preco...");
+        configurarPlaceholder(txtEstoqueProduto, "Digite o estoque...");
+        cboxCategoriaProduto.setSelectedIndex(0);
+    }
 
     private void btnCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProdutoActionPerformed
         ProdutoDAO pDAO = new ProdutoDAO();
@@ -163,12 +175,16 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         double preco = Double.parseDouble(txtPrecoProduto.getText());
         int estoque = Integer.parseInt(txtEstoqueProduto.getText());
 
-        int indexCategoria = cboxCategoriaProduto.getSelectedIndex();              
-              
-        Produto p = new Produto(nome, preco, estoque, indexCategoria);
-        pDAO.cadastrarProduto(p);
-        JOptionPane.showMessageDialog(rootPane, "Produto cadastrado com sucesso!");
-
+        int indexCategoria = cboxCategoriaProduto.getSelectedIndex();
+        
+        if(indexCategoria!=0){
+            Produto p = new Produto(nome, preco, estoque, indexCategoria);
+            pDAO.cadastrarProduto(p);
+            JOptionPane.showMessageDialog(rootPane, "Produto cadastrado com sucesso!");
+            ativarPlaceHolder();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Nao foi possivel realizar o cadastro\nSelecione uma categoria válida");
+        }
     }//GEN-LAST:event_btnCadastrarProdutoActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
@@ -182,6 +198,21 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         var telaProdutos = new TelaProdutos();
         telaProdutos.setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void cboxCategoriaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxCategoriaProdutoActionPerformed
+
+    }//GEN-LAST:event_cboxCategoriaProdutoActionPerformed
+
+    private void carregarCategorias() {
+        var categoriaDAO = new CategoriaDAO();
+        List<String> categorias = categoriaDAO.exibirListaDeCategorias();
+
+        cboxCategoriaProduto.removeAllItems();
+        cboxCategoriaProduto.addItem("SELECIONE A CATEGORIA");
+        for (String categoria : categorias) {
+            cboxCategoriaProduto.addItem(categoria);
+        }
+    }
 
     private void configurarPlaceholder(JTextField textField, String placeholder) {
         textField.setText(placeholder);

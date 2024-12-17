@@ -14,11 +14,12 @@ public class ItemVenda {
     private double valorItem;
     private Venda venda;
 
-    public ItemVenda(Produto produto, int quantidade) {
+    public ItemVenda(Produto produto, int quantidade, Venda venda) {
         this.id = geradorID++;
         this.produto = produto;
         this.quantidade = quantidade;
         this.valorItem = calcularValorItem(produto, quantidade);
+        this.venda= venda;
     }
 
     ItemVenda() {

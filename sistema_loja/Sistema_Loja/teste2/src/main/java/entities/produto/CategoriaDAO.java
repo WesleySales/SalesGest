@@ -45,21 +45,21 @@ public class CategoriaDAO {
 //        }
 //        return listaDeProdutos;
 //    }
-//
-//    public String exibirListaDeProdutos() {
-//        String sql = "select * from produto";
-//        try {
-//            ResultSet result = conexao.obterConexao().prepareStatement(sql).executeQuery();
-//            StringBuilder sb = new StringBuilder();
-//            while (result.next()) {
-//                sb.append(getProduto(result)).append("\n");
-//            }
-//            return sb.toString();
-//        } catch (SQLException e) {
-//            System.out.println(String.format("Error: %s", e.getMessage()));
-//        }
-//        return "";
-//    }
+
+    public List<String> exibirListaDeCategorias() {
+        List<String> categorias = new ArrayList<>();
+        String sql = "select * from categoria";
+        try {
+            ResultSet result = conexao.obterConexao().prepareStatement(sql).executeQuery();
+            while (result.next()) {
+                categorias.add(getCategoria(result).getNome_categoria());
+            }
+            return categorias;
+        } catch (SQLException e) {
+            System.out.println(String.format("Error: %s", e.getMessage()));
+        }
+        return categorias;
+    }
 
     private Categoria getCategoria(ResultSet resultado) throws SQLException {
         Categoria categoria = new Categoria();
