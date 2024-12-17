@@ -41,6 +41,7 @@ view\vendas\TelaAddToCart$5.class
 view\funcionario\CadastroFuncionario.class
 view\funcionario\CadastroFuncionario$4.class
 view\main\TelaMenuPrincipal$3.class
+entities\venda\StatusVenda.class
 view\produto\TelaCadastroProduto$2.class
 view\produto\TelaCadastroProduto$5.class
 entities\funcionario\Usuario.class

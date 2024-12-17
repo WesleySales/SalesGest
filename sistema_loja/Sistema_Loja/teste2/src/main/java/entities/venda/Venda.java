@@ -12,12 +12,14 @@ public class Venda {
     private LocalDate data;
     private List<ItemVenda> listaDeItens = new ArrayList<>();
     private double valorVenda;
-
+    private StatusVenda statusVenda;
+            
     public Venda(Usuario funcionario) {
         this.id = geradorIdVenda++;
         this.usuario = funcionario;
         this.data = LocalDate.now();
         this.valorVenda=0;
+        this.statusVenda = StatusVenda.ABERTO;
     }
 
     public Venda() {
@@ -25,8 +27,14 @@ public class Venda {
         this.data = LocalDate.now();
         this.valorVenda = 0;
     }
-    
-    
+
+    public void setStatusVenda(StatusVenda statusVenda) {
+        this.statusVenda = statusVenda;
+    }
+
+    public StatusVenda getStatusVenda() {
+        return statusVenda;
+    }
 
     public int getId() {
         return id;

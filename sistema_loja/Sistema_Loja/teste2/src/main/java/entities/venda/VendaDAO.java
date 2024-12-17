@@ -37,8 +37,7 @@ public class VendaDAO {
             System.out.format("Error: %s", e.getMessage());
         }
     }
-        
-            
+
     private Venda getVenda(ResultSet resultado) throws SQLException {
         Venda venda = new Venda();
 
@@ -46,6 +45,8 @@ public class VendaDAO {
         LocalDate dataVenda = resultado.getObject("data_venda", LocalDate.class);
         venda.setData(dataVenda);
         venda.setValorVenda(resultado.getDouble("valor_total_venda"));
+        String statusVendaString = resultado.getString("status_venda");
+        venda.setStatusVenda(StatusVenda.valueOf(statusVendaString));  // Agora passando o valor correto
 
         return venda;
     }
@@ -66,13 +67,13 @@ public class VendaDAO {
         System.out.println("Venda nao encontrada");
         return null;
     }
-    
-    public Venda exibirVendaPorId(int id){
+
+    public Venda exibirVendaPorId(int id) {
         String sql = "select * from venda where id_venda=?";
-        
+
         try {
             PreparedStatement stmt = conexao.obterConexao().prepareStatement(sql);
-            stmt.setInt(1,id);
+            stmt.setInt(1, id);
             ResultSet result = stmt.executeQuery();
             while (result.next()) {
                 return getVenda(result);
@@ -81,21 +82,20 @@ public class VendaDAO {
             System.out.println(String.format("Error: %s", e.getMessage()));
         }
         return null;
-        
+
     }
-    
-//    public Produto buscarProdutoPorNome(String nome) {
-//        String sql = "select * from vw_produtos_visao_geral where nome_produto = ?";
-//        try {
-//            PreparedStatement stmt = conexao.obterConexao().prepareStatement(sql);
-//            stmt.setString(1,nome);
-//            ResultSet result = stmt.executeQuery();
-//            while (result.next()) {
-//                return getProduto(result);
-//            }
-//        } catch (SQLException e) {
-//            System.out.println(String.format("Error: %s", e.getMessage()));
-//        }
-//        return null;
-//    }
+
+    public void atualizarStatusVenda(int id, StatusVenda status) {
+        String sql = "update venda set status_venda = ? where id_venda=?";
+
+        try {
+            PreparedStatement stmt = conexao.obterConexao().prepareStatement(sql);
+            stmt.setString(1, status.name());
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(String.format("Error: %s", e.getMessage()));
+        }
+    }
 }

@@ -187,8 +187,8 @@ public class TelaAddToCart extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(spinQuantidade)
                                 .addComponent(btnAdicionarAoCarrinho, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
-                            .addGap(118, 118, 118)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGap(102, 102, 102)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,7 +283,6 @@ public class TelaAddToCart extends javax.swing.JFrame {
         
         if (selecionado != -1) {
             int id_produto = (int) tblProdutosVenda.getValueAt(selecionado, 0);
-//            var p = produto.buscarProdutoPorId(id_produto);
             int quantidade = (int) spinQuantidade.getValue();
             
             Venda nova = this.novaVenda;

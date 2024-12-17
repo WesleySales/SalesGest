@@ -12,6 +12,7 @@ import entities.produto.Produto;
 import entities.produto.ProdutoDAO;
 import entities.venda.ItemVenda;
 import entities.venda.ItemVendaDAO;
+import entities.venda.StatusVenda;
 import entities.venda.VendaDAO;
 import java.awt.Color;
 import java.awt.event.FocusEvent;
@@ -61,8 +62,7 @@ public class TelaFinalizarVenda extends javax.swing.JFrame {
         btnAdicionarAoCarrinho = new javax.swing.JButton();
         txtCabecalho = new javax.swing.JLabel();
         btnFinalizarCompra = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtValor = new javax.swing.JTextArea();
+        txtValor = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
@@ -142,12 +142,9 @@ public class TelaFinalizarVenda extends javax.swing.JFrame {
             }
         });
 
-        txtValor.setBackground(new java.awt.Color(0, 51, 51));
-        txtValor.setColumns(20);
         txtValor.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         txtValor.setForeground(new java.awt.Color(255, 255, 255));
-        txtValor.setRows(5);
-        jScrollPane1.setViewportView(txtValor);
+        txtValor.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -162,12 +159,13 @@ public class TelaFinalizarVenda extends javax.swing.JFrame {
                         .addComponent(btnCadastrarProduto1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnAdicionarAoCarrinho, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnFinalizarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(btnAdicionarAoCarrinho, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(24, 24, 24)
+                            .addComponent(btnFinalizarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(48, 48, 48))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,13 +175,13 @@ public class TelaFinalizarVenda extends javax.swing.JFrame {
                     .addComponent(txtCabecalho, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdicionarAoCarrinho, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnFinalizarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -225,11 +223,15 @@ public class TelaFinalizarVenda extends javax.swing.JFrame {
         }
     }
     
-    private void exibirValorTotal(){
+    private Venda encontrarVenda(){
         int id_venda = TelaAddToCart.novaVenda.getId();
         System.out.println("o id da venda é: "+id_venda);
         Venda v = vendaDAO.exibirVendaPorId(id_venda);
-        txtValor.setText(String.format("Valor total: R$%.2f", v.getValorVenda()));
+        return v;
+    }
+    
+    private void exibirValorTotal(){
+        txtValor.setText(String.format("Valor total: R$%.2f", encontrarVenda().getValorVenda()));
     }
     
 
@@ -243,6 +245,10 @@ public class TelaFinalizarVenda extends javax.swing.JFrame {
 
     private void btnFinalizarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarCompraActionPerformed
 //        Usuario funcionario = usuario.buscarUsuarioPeloLogin(TelaLogin.guardarLogin);
+        Venda v = encontrarVenda();
+//        v.setStatusVenda(StatusVenda.PAGO);
+        
+        vendaDAO.atualizarStatusVenda(v.getId(),StatusVenda.PAGO);
         JOptionPane.showMessageDialog(rootPane, "VENDA FINALIZADA COM SUCESSO!\n");
 //                + "Vendedor: "+funcionario.getNome()+"\n"
 //                + "Valor Total: R$"+novaVenda.getValorVenda());
@@ -319,10 +325,9 @@ public class TelaFinalizarVenda extends javax.swing.JFrame {
     private javax.swing.JButton btnFinalizarCompra;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblProdutosVenda;
     private javax.swing.JLabel txtCabecalho;
-    private javax.swing.JTextArea txtValor;
+    private javax.swing.JLabel txtValor;
     // End of variables declaration//GEN-END:variables
 }
