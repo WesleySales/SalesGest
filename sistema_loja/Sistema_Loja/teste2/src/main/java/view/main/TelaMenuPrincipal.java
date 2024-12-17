@@ -10,6 +10,7 @@ import entities.funcionario.Usuario;
 import entities.funcionario.UsuarioDAO;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import view.vendas.TelaAddToCart;
 
 /**
  *
@@ -170,7 +171,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnModuloVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModuloVendasActionPerformed
-        var tela = new TelaProdutos();
+        var tela = new TelaAddToCart();
         tela.setVisible(true);
     }//GEN-LAST:event_btnModuloVendasActionPerformed
 
@@ -180,11 +181,7 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         Usuario funcionario = new Usuario();
         funcionario = u.buscarUsuarioPeloLogin(TelaLogin.guardarLogin);
         
-        if(funcionario.getCargo().getNome_cargo().equals("GERENTE")){
-            tela.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Você não tem permissão para acessar este módulo!\nCargo requerido 'GERENTE'");
-        }
+        verificarPermissao(funcionario);
     }//GEN-LAST:event_btnModuloProdutosActionPerformed
 
     private void brnEncerrarSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnEncerrarSessaoActionPerformed
@@ -196,17 +193,16 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
         Usuario funcionario = new Usuario();
         funcionario = u.buscarUsuarioPeloLogin(TelaLogin.guardarLogin);
         
+        verificarPermissao(funcionario);
+    }//GEN-LAST:event_btnModuloFuncionariosActionPerformed
+    
+    public void verificarPermissao(Usuario funcionario){
         if(funcionario.getCargo().getNome_cargo().equals("GERENTE")){
             var tela = new CadastroFuncionario();
             tela.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(rootPane, "Você não tem permissão para acessar este módulo!\nCargo requerido 'GERENTE'");
         }
-        
-    }//GEN-LAST:event_btnModuloFuncionariosActionPerformed
-    
-    public void verificarPermissao(){
-        
     }
     /**
      * @param args the command line arguments

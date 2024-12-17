@@ -13,11 +13,20 @@ public class Venda {
     private List<ItemVenda> listaDeItens = new ArrayList<>();
     private double valorVenda;
 
-    public Venda() {
+    public Venda(Usuario funcionario) {
         this.id = geradorIdVenda++;
+        this.usuario = funcionario;
         this.data = LocalDate.now();
         this.valorVenda=0;
     }
+
+    public Venda() {
+        this.id = geradorIdVenda++;
+        this.data = LocalDate.now();
+        this.valorVenda = 0;
+    }
+    
+    
 
     public int getId() {
         return id;
@@ -49,6 +58,10 @@ public class Venda {
 
     public void setValorVenda(double valorVenda) {
         this.valorVenda = valorVenda;
+    }
+
+    public List<ItemVenda> getListaDeItens() {
+        return listaDeItens;
     }
 
     @Override
