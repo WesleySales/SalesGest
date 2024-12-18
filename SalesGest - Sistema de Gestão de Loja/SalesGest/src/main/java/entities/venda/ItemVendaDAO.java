@@ -17,7 +17,11 @@ public class ItemVendaDAO {
         this.conexao = new ConexaoMysql();
     }
     
-    public String criarItem(ItemVenda item){
+    public String salvarItemNoCarrinho(ItemVenda item, int quantidade){
+        return item==null? criarItem(item):editarItem(item, quantidade);
+    }
+    
+    private String criarItem(ItemVenda item){
 
         String sql = "insert into Item_Venda (id_produto, quantidade_produto,valor_item, id_venda) values (?,?,?,?)";
         double valorItem = calcularValorItem(item.getProduto(), item.getQuantidade()); //retorna o valor do item e atribui a minha variavel        
@@ -27,7 +31,7 @@ public class ItemVendaDAO {
             PreparedStatement preparedStatement = conexao.obterConexao().prepareStatement(sql);
             preparedStatement.setInt(1, item.getProduto().getId());
             preparedStatement.setInt(2, item.getQuantidade());
-            preparedStatement.setDouble(3, item.getValorItem());
+            preparedStatement.setDouble(3, valorItem);
             preparedStatement.setInt(4, item.getVenda().getId());
             
             preparedStatement.executeUpdate();
@@ -38,13 +42,13 @@ public class ItemVendaDAO {
         }
     }
     
-    public String editarItem(int id_produto, int quantidade){
+    private String editarItem(ItemVenda item, int quantidade){
         String sql = "update item_venda set quantidade_produto = ? where id_produto=?";
         
         try {
             PreparedStatement preparedStatement = conexao.obterConexao().prepareStatement(sql);
-            preparedStatement.setInt(1, quantidade);
-            preparedStatement.setInt(2, id_produto);
+            preparedStatement.setInt(1, (item.getQuantidade()+quantidade));
+            preparedStatement.setInt(2, item.getId());
             
             preparedStatement.executeUpdate();
             return "Item editado com sucesso";

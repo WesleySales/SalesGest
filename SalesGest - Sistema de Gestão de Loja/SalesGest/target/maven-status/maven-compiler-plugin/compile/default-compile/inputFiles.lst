@@ -1,27 +1,27 @@
-C:\Users\salle\Desktop\loja_sistema\sistema_loja\Sistema_Loja\teste2\src\main\java\Autenticacao\Autenticacao.java
-C:\Users\salle\Desktop\loja_sistema\sistema_loja\Sistema_Loja\teste2\src\main\java\Autenticacao\LoginDTO.java
-C:\Users\salle\Desktop\loja_sistema\sistema_loja\Sistema_Loja\teste2\src\main\java\entities\funcionario\CargoFuncionario.java
-C:\Users\salle\Desktop\loja_sistema\sistema_loja\Sistema_Loja\teste2\src\main\java\entities\produto\CategoriaDAO.java
-C:\Users\salle\Desktop\loja_sistema\sistema_loja\Sistema_Loja\teste2\src\main\java\entities\Venda.java
-C:\Users\salle\Desktop\loja_sistema\sistema_loja\Sistema_Loja\teste2\src\main\java\entities\venda\Venda.java
-C:\Users\salle\Desktop\loja_sistema\sistema_loja\Sistema_Loja\teste2\src\main\java\entities\produto\Produto.java
-C:\Users\salle\Desktop\loja_sistema\sistema_loja\Sistema_Loja\teste2\src\main\java\entities\venda\ItemVendaDAO.java
-C:\Users\salle\Desktop\loja_sistema\sistema_loja\Sistema_Loja\teste2\src\main\java\view\funcionario\TelaCadastroFuncionario.java
-C:\Users\salle\Desktop\loja_sistema\sistema_loja\Sistema_Loja\teste2\src\main\java\view\produto\TelaProdutos.java
-C:\Users\salle\Desktop\loja_sistema\sistema_loja\Sistema_Loja\teste2\src\main\java\view\vendas\TelaAddToCart.java
-C:\Users\salle\Desktop\loja_sistema\sistema_loja\Sistema_Loja\teste2\src\main\java\entities\funcionario\UsuarioDAO.java
-C:\Users\salle\Desktop\loja_sistema\sistema_loja\Sistema_Loja\teste2\src\main\java\entities\produto\Categoria.java
-C:\Users\salle\Desktop\loja_sistema\sistema_loja\Sistema_Loja\teste2\src\main\java\entities\produto\ProdutoDAO.java
-C:\Users\salle\Desktop\loja_sistema\sistema_loja\Sistema_Loja\teste2\src\main\java\conexao\ConexaoMysql.java
-C:\Users\salle\Desktop\loja_sistema\sistema_loja\Sistema_Loja\teste2\src\main\java\entities\funcionario\CargoFuncionarioDAO.java
-C:\Users\salle\Desktop\loja_sistema\sistema_loja\Sistema_Loja\teste2\src\main\java\entities\venda\ItemVenda.java
-C:\Users\salle\Desktop\loja_sistema\sistema_loja\Sistema_Loja\teste2\src\main\java\entities\venda\VendaDAO.java
-C:\Users\salle\Desktop\loja_sistema\sistema_loja\Sistema_Loja\teste2\src\main\java\view\vendas\TelaFinalizarVenda.java
-C:\Users\salle\Desktop\loja_sistema\sistema_loja\Sistema_Loja\teste2\src\main\java\view\funcionario\CadastroFuncionario.java
-C:\Users\salle\Desktop\loja_sistema\sistema_loja\Sistema_Loja\teste2\src\main\java\view\main\TelaMenuPrincipal.java
-C:\Users\salle\Desktop\loja_sistema\sistema_loja\Sistema_Loja\teste2\src\main\java\view\produto\TelaCadastroProduto.java
-C:\Users\salle\Desktop\loja_sistema\sistema_loja\Sistema_Loja\teste2\src\main\java\view\main\TelaLogin.java
-C:\Users\salle\Desktop\loja_sistema\sistema_loja\Sistema_Loja\teste2\src\main\java\com\salescorp\teste2\Teste2.java
-C:\Users\salle\Desktop\loja_sistema\sistema_loja\Sistema_Loja\teste2\src\main\java\entities\venda\StatusVenda.java
-C:\Users\salle\Desktop\loja_sistema\sistema_loja\Sistema_Loja\teste2\src\main\java\entities\funcionario\Usuario.java
-C:\Users\salle\Desktop\loja_sistema\sistema_loja\Sistema_Loja\teste2\src\main\java\conexao\Conexao.java
+C:\Users\salle\Desktop\SalesGest\SalesGest - Sistema de Gestão de Loja\SalesGest\src\main\java\entities\funcionario\CargoFuncionarioDAO.java
+C:\Users\salle\Desktop\SalesGest\SalesGest - Sistema de Gestão de Loja\SalesGest\src\main\java\Autenticacao\LoginDTO.java
+C:\Users\salle\Desktop\SalesGest\SalesGest - Sistema de Gestão de Loja\SalesGest\src\main\java\entities\funcionario\CargoFuncionario.java
+C:\Users\salle\Desktop\SalesGest\SalesGest - Sistema de Gestão de Loja\SalesGest\src\main\java\entities\venda\ItemVenda.java
+C:\Users\salle\Desktop\SalesGest\SalesGest - Sistema de Gestão de Loja\SalesGest\src\main\java\view\vendas\TelaFinalizarVenda.java
+C:\Users\salle\Desktop\SalesGest\SalesGest - Sistema de Gestão de Loja\SalesGest\src\main\java\entities\funcionario\UsuarioDAO.java
+C:\Users\salle\Desktop\SalesGest\SalesGest - Sistema de Gestão de Loja\SalesGest\src\main\java\com\salescorp\teste2\Teste2.java
+C:\Users\salle\Desktop\SalesGest\SalesGest - Sistema de Gestão de Loja\SalesGest\src\main\java\entities\venda\VendaDAO.java
+C:\Users\salle\Desktop\SalesGest\SalesGest - Sistema de Gestão de Loja\SalesGest\src\main\java\entities\produto\Categoria.java
+C:\Users\salle\Desktop\SalesGest\SalesGest - Sistema de Gestão de Loja\SalesGest\src\main\java\entities\Venda.java
+C:\Users\salle\Desktop\SalesGest\SalesGest - Sistema de Gestão de Loja\SalesGest\src\main\java\entities\funcionario\Usuario.java
+C:\Users\salle\Desktop\SalesGest\SalesGest - Sistema de Gestão de Loja\SalesGest\src\main\java\entities\venda\StatusVenda.java
+C:\Users\salle\Desktop\SalesGest\SalesGest - Sistema de Gestão de Loja\SalesGest\src\main\java\entities\venda\Venda.java
+C:\Users\salle\Desktop\SalesGest\SalesGest - Sistema de Gestão de Loja\SalesGest\src\main\java\entities\produto\Produto.java
+C:\Users\salle\Desktop\SalesGest\SalesGest - Sistema de Gestão de Loja\SalesGest\src\main\java\conexao\ConexaoMysql.java
+C:\Users\salle\Desktop\SalesGest\SalesGest - Sistema de Gestão de Loja\SalesGest\src\main\java\view\main\TelaLogin.java
+C:\Users\salle\Desktop\SalesGest\SalesGest - Sistema de Gestão de Loja\SalesGest\src\main\java\Autenticacao\Autenticacao.java
+C:\Users\salle\Desktop\SalesGest\SalesGest - Sistema de Gestão de Loja\SalesGest\src\main\java\entities\produto\CategoriaDAO.java
+C:\Users\salle\Desktop\SalesGest\SalesGest - Sistema de Gestão de Loja\SalesGest\src\main\java\view\funcionario\CadastroFuncionario.java
+C:\Users\salle\Desktop\SalesGest\SalesGest - Sistema de Gestão de Loja\SalesGest\src\main\java\conexao\Conexao.java
+C:\Users\salle\Desktop\SalesGest\SalesGest - Sistema de Gestão de Loja\SalesGest\src\main\java\view\vendas\TelaAddToCart.java
+C:\Users\salle\Desktop\SalesGest\SalesGest - Sistema de Gestão de Loja\SalesGest\src\main\java\view\main\TelaMenuPrincipal.java
+C:\Users\salle\Desktop\SalesGest\SalesGest - Sistema de Gestão de Loja\SalesGest\src\main\java\view\produto\TelaProdutos.java
+C:\Users\salle\Desktop\SalesGest\SalesGest - Sistema de Gestão de Loja\SalesGest\src\main\java\view\funcionario\TelaCadastroFuncionario.java
+C:\Users\salle\Desktop\SalesGest\SalesGest - Sistema de Gestão de Loja\SalesGest\src\main\java\view\produto\TelaCadastroProduto.java
+C:\Users\salle\Desktop\SalesGest\SalesGest - Sistema de Gestão de Loja\SalesGest\src\main\java\entities\venda\ItemVendaDAO.java
+C:\Users\salle\Desktop\SalesGest\SalesGest - Sistema de Gestão de Loja\SalesGest\src\main\java\entities\produto\ProdutoDAO.java

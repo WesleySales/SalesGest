@@ -278,6 +278,11 @@ public class TelaAddToCart extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCadastrarProduto1ActionPerformed
 
+    private Venda abrirVenda(){
+        venda.criarVenda(this.novaVenda);
+        return this.novaVenda;
+    }
+    
     private void btnAdicionarAoCarrinhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarAoCarrinhoActionPerformed
         int selecionado = tblProdutosVenda.getSelectedRow();
         
@@ -285,20 +290,11 @@ public class TelaAddToCart extends javax.swing.JFrame {
             int id_produto = (int) tblProdutosVenda.getValueAt(selecionado, 0);
             int quantidade = (int) spinQuantidade.getValue();
             
-            Venda nova = this.novaVenda;
-            venda.criarVenda(nova);
-            
             //verificar se o produto ja esta no carrinho:
-            ItemVenda novoItem = item.buscarItem(id_produto, nova.getId());
+            ItemVenda novoItem = item.buscarItem(id_produto, abrirVenda().getId());
             
-            if(novoItem == null){
-                item.criarItem(novoItem);
-                JOptionPane.showMessageDialog(rootPane, "Produto adicionado ao carrinho com sucesso");
-            } else {
-                int novaQuantidade = novoItem.getQuantidade()+quantidade;
-                item.editarItem(id_produto, novaQuantidade);
-                JOptionPane.showMessageDialog(rootPane, "O produto já estava no carrinho. A quantidade foi alterada");
-            }
+            String mensagem = item.salvarItemNoCarrinho(novoItem, quantidade);
+            JOptionPane.showMessageDialog(this, mensagem);
             
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um produto para adicionar ao carrinho.");
