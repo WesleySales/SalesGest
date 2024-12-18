@@ -95,7 +95,7 @@ public class UsuarioDAO {
 
         var cargo = new CargoFuncionario();
         cargo.setNome_cargo(resultado.getString("cargo"));
-        cargo.setRemuneracao_base(resultado.getDouble("remuneracao_base"));
+        cargo.setRemuneracao_base(resultado.getDouble("salario"));
         usuario.setCargo(cargo);
 
         return usuario;
@@ -141,7 +141,6 @@ public class UsuarioDAO {
             }
         } catch (SQLException e) {
             System.out.println(String.format("Error: %s", e.getMessage()));
-//            System.out.println("O usuario é nulo");                
         }
         return null;
     }

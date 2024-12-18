@@ -17,7 +17,7 @@ public class ConexaoMysql implements Conexao{
     
     private final String USUARIO = "root";
     private final String SENHA = "";
-    private final String URL = "jdbc:mysql://localhost/sistema_loja";
+    private final String URL = "jdbc:mysql://localhost/salesgest";
     private Connection conectar;
     
 
