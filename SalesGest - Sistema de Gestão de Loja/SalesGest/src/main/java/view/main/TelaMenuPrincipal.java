@@ -177,11 +177,8 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
 
     private void btnModuloProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModuloProdutosActionPerformed
         var tela = new TelaProdutos();
-        UsuarioDAO u = new UsuarioDAO();
-        Usuario funcionario = new Usuario();
-        funcionario = u.buscarUsuarioPeloLogin(TelaLogin.guardarLogin);
-        
-        verificarPermissao(funcionario);
+        var funcionario = recuperarLogin();
+        verificarPermissao(funcionario,tela);
     }//GEN-LAST:event_btnModuloProdutosActionPerformed
 
     private void brnEncerrarSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brnEncerrarSessaoActionPerformed
@@ -189,20 +186,23 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_brnEncerrarSessaoActionPerformed
 
     private void btnModuloFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModuloFuncionariosActionPerformed
-        UsuarioDAO u = new UsuarioDAO();
-        Usuario funcionario = new Usuario();
-        funcionario = u.buscarUsuarioPeloLogin(TelaLogin.guardarLogin);
-        
-        verificarPermissao(funcionario);
+        var tela = new CadastroFuncionario();
+        var funcionario = recuperarLogin();
+        verificarPermissao(funcionario,tela);
     }//GEN-LAST:event_btnModuloFuncionariosActionPerformed
     
-    public void verificarPermissao(Usuario funcionario){
+    public void verificarPermissao(Usuario funcionario, JFrame tela){
         if(funcionario.getCargo().getNome_cargo().equals("GERENTE")){
-            var tela = new CadastroFuncionario();
             tela.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(rootPane, "Você não tem permissão para acessar este módulo!\nCargo requerido 'GERENTE'");
         }
+    }
+    
+    private Usuario recuperarLogin(){
+        UsuarioDAO u = new UsuarioDAO();
+        Usuario funcionario = new Usuario();
+        return u.buscarUsuarioPeloLogin(TelaLogin.guardarLogin);
     }
     /**
      * @param args the command line arguments
