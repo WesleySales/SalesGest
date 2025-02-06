@@ -23,10 +23,8 @@ public class TelaMenuPrincipal extends javax.swing.JFrame {
      */
     public TelaMenuPrincipal() {
         initComponents();
-        UsuarioDAO u = new UsuarioDAO();
-        Usuario funcionario = new Usuario();
         
-        funcionario = u.buscarUsuarioPeloLogin(TelaLogin.guardarLogin);
+        var funcionario = recuperarLogin();
         txtBemVindo.setText(String.format("Olá, %s! Escolha um módulo para continuar", funcionario.getNome()));
     }
 

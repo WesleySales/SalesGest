@@ -9,7 +9,7 @@ create view vw_produtos_visao_geral as (
 -- visualização geral dos funcionários
 create view vw_funcionario_geral as (
 	select f.id_funcionario,f.nome_funcionario, f.sobrenome_funcionario, f.login_funcionario, 
-    f.senha_funcionario, cf.nome_cargo as cargo 
+    f.senha_funcionario, cf.nome_cargo as cargo cf.remuneracao_base as salario
 	from funcionario f
 	join cargo_funcionario cf on f.id_cargo=cf.id_cargo
 );

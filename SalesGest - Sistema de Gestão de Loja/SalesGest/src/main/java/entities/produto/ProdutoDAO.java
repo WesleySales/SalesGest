@@ -62,6 +62,26 @@ public class ProdutoDAO {
         }
         return "";
     }
+    
+    public List<Produto> exibirProdutosPorCategoria(String categoria) {
+        String sql = "select * from vw_produtos_visao_geral where categoria = ?";
+        List<Produto> produtos = new ArrayList<>();
+        try {
+            PreparedStatement stmt = conexao.obterConexao().prepareStatement(sql);
+            stmt.setString(1,categoria);
+            ResultSet result = stmt.executeQuery();
+//            StringBuilder sb = new StringBuilder();
+            while (result.next()) {
+                produtos.add(getProduto(result));
+//                sb.append(getProduto(result)).append("\n");
+            }
+            return produtos;
+        } catch (SQLException e) {
+            System.out.println(String.format("Error: %s", e.getMessage()));
+        }
+        return produtos;
+    }
+    
 
     private Produto getProduto(ResultSet resultado) throws SQLException {
         Produto produto = new Produto();
