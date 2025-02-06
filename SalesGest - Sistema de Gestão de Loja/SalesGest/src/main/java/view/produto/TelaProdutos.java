@@ -252,8 +252,7 @@ public class TelaProdutos extends javax.swing.JFrame {
             String resultado = produto.editarProduto(novoNome, novoPreco, novoEstoque, id_produto);
 
             JOptionPane.showMessageDialog(rootPane, p.getNome() + " - " + resultado);
-//            exibirListaDeProdutos();
-
+            atualizarTabela();
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um produto para DELETAR.");
         }
@@ -264,7 +263,6 @@ public class TelaProdutos extends javax.swing.JFrame {
     }//GEN-LAST:event_cboxFiltroCategoriaActionPerformed
 
     private void atualizarTabela() {
-
         List<Produto> produtos = produto.listaDeProdutosCadastrados();
         exibirListaDeProdutos(produtos);
     }
