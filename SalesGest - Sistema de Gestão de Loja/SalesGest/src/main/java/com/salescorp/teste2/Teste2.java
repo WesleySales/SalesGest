@@ -29,12 +29,10 @@ public class Teste2 {
         
         //teste de itemVenda
         var itemDAO = new ItemVendaDAO();
+        var produtosDAO = new ProdutoDAO();
         
-//        var item = itemDAO.buscarItem(1, 100);
+        System.out.println(produtosDAO.exibirProdutosPorCategoria("Roupas"));
+
         
-//        System.out.println(itemDAO.editarItem(1, 10));
-        
-//        System.out.println(item);
-//        System.out.println(itemDAO.listaDeItens());
     }
 }

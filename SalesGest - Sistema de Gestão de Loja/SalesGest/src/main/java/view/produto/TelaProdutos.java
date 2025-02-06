@@ -12,6 +12,7 @@ import java.awt.Color;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -22,9 +23,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TelaProdutos extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TelaProdutos
-     */
+    private TelaCadastroProduto telaCadastroProduto = new TelaCadastroProduto();
     private ProdutoDAO produto;
     private CategoriaDAO categoria;
 
@@ -32,7 +31,8 @@ public class TelaProdutos extends javax.swing.JFrame {
         initComponents();
         this.produto = new ProdutoDAO();
         this.categoria = new CategoriaDAO();
-        exibirListaDeProdutos();
+        atualizarTabela();
+        telaCadastroProduto.carregarCategorias(cboxFiltroCategoria);
     }
 
     /**
@@ -52,6 +52,8 @@ public class TelaProdutos extends javax.swing.JFrame {
         btnCadastrarProduto1 = new javax.swing.JButton();
         btnDeletarProduto = new javax.swing.JButton();
         btnEditarProduto = new javax.swing.JButton();
+        cboxFiltroCategoria = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -128,6 +130,20 @@ public class TelaProdutos extends javax.swing.JFrame {
             }
         });
 
+        cboxFiltroCategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "categoria" }));
+        cboxFiltroCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboxFiltroCategoriaActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -140,13 +156,19 @@ public class TelaProdutos extends javax.swing.JFrame {
                         .addComponent(btnCadastrarProduto1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnCadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(217, 217, 217)
-                                .addComponent(btnEditarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnDeletarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(cboxFiltroCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jButton2))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(btnEditarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnDeletarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addContainerGap(50, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -158,9 +180,16 @@ public class TelaProdutos extends javax.swing.JFrame {
                     .addComponent(btnEditarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCadastrarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDeletarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(cboxFiltroCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)))
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -180,14 +209,10 @@ public class TelaProdutos extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-
-    private void exibirListaDeProdutos() {
+    private void exibirListaDeProdutos(List<Produto> produtos) {
         DefaultTableModel model = (DefaultTableModel) tblProdutos.getModel();
         tblProdutos.setDefaultEditor(Object.class, null);
         model.setRowCount(0);
-
-        // Obtém a lista de produtos do banco
-        List<Produto> produtos = produto.listaDeProdutosCadastrados();
 
         if (!produtos.isEmpty()) {
             for (Produto p : produtos) {
@@ -204,10 +229,6 @@ public class TelaProdutos extends javax.swing.JFrame {
         }
     }
 
-//    public void exibirListaDeProdutos(){
-//        ProdutoDAO produto = new ProdutoDAO();
-////        txtAreaProdutos.setText(produto.exibirListaDeProdutos());
-//    }
 
     private void btnCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProdutoActionPerformed
         TelaCadastroProduto telaCadastro = new TelaCadastroProduto();
@@ -229,8 +250,8 @@ public class TelaProdutos extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um produto para DELETAR.");
         }
-        
-        exibirListaDeProdutos();
+
+        atualizarTabela();
     }//GEN-LAST:event_btnDeletarProdutoActionPerformed
 
     private void btnEditarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProdutoActionPerformed
@@ -247,12 +268,38 @@ public class TelaProdutos extends javax.swing.JFrame {
             String resultado = produto.editarProduto(novoNome, novoPreco, novoEstoque, id_produto);
 
             JOptionPane.showMessageDialog(rootPane, p.getNome() + " - " + resultado);
-            exibirListaDeProdutos();
+//            exibirListaDeProdutos();
 
         } else {
             JOptionPane.showMessageDialog(this, "Selecione um produto para DELETAR.");
         }
     }//GEN-LAST:event_btnEditarProdutoActionPerformed
+
+    private void cboxFiltroCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxFiltroCategoriaActionPerformed
+        produtosPorCategoria();
+    }//GEN-LAST:event_cboxFiltroCategoriaActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        produtosPorCategoria();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void atualizarTabela() {
+
+        List<Produto> produtos = produto.listaDeProdutosCadastrados();
+        exibirListaDeProdutos(produtos);
+    }
+
+    private void produtosPorCategoria() {
+        int index = cboxFiltroCategoria.getSelectedIndex();
+        if (index == 0) {
+            atualizarTabela();
+        } else {
+            String categoria = String.valueOf(cboxFiltroCategoria.getSelectedItem());
+            List<Produto> produtos = produto.exibirProdutosPorCategoria(categoria);
+            exibirListaDeProdutos(produtos);
+        }
+
+    }
 
     private void configurarPlaceholder(JTextField textField, String placeholder) {
         textField.setText(placeholder);
@@ -318,7 +365,9 @@ public class TelaProdutos extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrarProduto1;
     private javax.swing.JButton btnDeletarProduto;
     private javax.swing.JButton btnEditarProduto;
+    private javax.swing.JComboBox<String> cboxFiltroCategoria;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblProdutos;

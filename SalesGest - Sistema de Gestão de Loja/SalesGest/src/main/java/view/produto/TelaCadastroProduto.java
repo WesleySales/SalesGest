@@ -8,11 +8,10 @@ import entities.produto.CategoriaDAO;
 import entities.produto.Produto;
 import entities.produto.ProdutoDAO;
 import java.awt.Color;
-import java.awt.JobAttributes;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.sql.SQLException;
 import java.util.List;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -33,7 +32,7 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         this.produto = new ProdutoDAO();
         this.categoria = new CategoriaDAO();
         ativarPlaceHolder();
-        carregarCategorias();
+        carregarCategorias(cboxCategoriaProduto);
     }
 
     /**
@@ -203,14 +202,14 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
 
     }//GEN-LAST:event_cboxCategoriaProdutoActionPerformed
 
-    private void carregarCategorias() {
+    public void carregarCategorias(JComboBox box) {
         var categoriaDAO = new CategoriaDAO();
         List<String> categorias = categoriaDAO.exibirListaDeCategorias();
 
-        cboxCategoriaProduto.removeAllItems();
-        cboxCategoriaProduto.addItem("SELECIONE A CATEGORIA");
+        box.removeAllItems();
+        box.addItem("SELECIONE A CATEGORIA");
         for (String categoria : categorias) {
-            cboxCategoriaProduto.addItem(categoria);
+            box.addItem(categoria);
         }
     }
 

@@ -48,11 +48,11 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="btnCadastrarProduto" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnCadastrarFuncionario" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="btnEditarProduto" min="-2" pref="84" max="-2" attributes="0"/>
+                                  <Component id="btnEditarFuncionario" min="-2" pref="84" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="btnDeletarProduto" min="-2" pref="96" max="-2" attributes="0"/>
+                                  <Component id="btnDeletarFuncionario" min="-2" pref="96" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane1" min="-2" pref="620" max="-2" attributes="0"/>
                           </Group>
@@ -72,9 +72,9 @@
               <Component id="jLabel1" min="-2" pref="45" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnEditarProduto" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnCadastrarProduto" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnDeletarProduto" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnEditarFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnCadastrarFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnDeletarFuncionario" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="295" max="-2" attributes="0"/>
@@ -155,28 +155,28 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEncerrarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnDeletarProduto">
+    <Component class="javax.swing.JButton" name="btnDeletarFuncionario">
       <Properties>
         <Property name="text" type="java.lang.String" value="DELETAR"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeletarProdutoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeletarFuncionarioActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnCadastrarProduto">
+    <Component class="javax.swing.JButton" name="btnCadastrarFuncionario">
       <Properties>
         <Property name="text" type="java.lang.String" value="CADASTRAR NOVO FUNCION&#xc1;RIO"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastrarProdutoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastrarFuncionarioActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnEditarProduto">
+    <Component class="javax.swing.JButton" name="btnEditarFuncionario">
       <Properties>
         <Property name="text" type="java.lang.String" value="EDITAR"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarProdutoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarFuncionarioActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
