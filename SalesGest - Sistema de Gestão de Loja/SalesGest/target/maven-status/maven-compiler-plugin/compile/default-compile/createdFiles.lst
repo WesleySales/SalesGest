@@ -16,7 +16,6 @@ view\vendas\TelaAddToCart$4.class
 entities\venda\Venda.class
 entities\produto\CategoriaDAO.class
 view\funcionario\TelaCadastroFuncionario$4.class
-view\produto\TelaProdutos$9.class
 view\funcionario\CadastroFuncionario$3.class
 view\vendas\TelaFinalizarVenda$3.class
 view\produto\TelaCadastroProduto$3.class
