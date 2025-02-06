@@ -32,7 +32,7 @@ public class Teste2 {
         var produtosDAO = new ProdutoDAO();
         
         System.out.println(produtosDAO.exibirProdutosPorCategoria("Roupas"));
-
+        System.out.println("a");
         
     }
 }

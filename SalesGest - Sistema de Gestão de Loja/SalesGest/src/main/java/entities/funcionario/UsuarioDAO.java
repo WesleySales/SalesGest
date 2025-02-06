@@ -84,6 +84,16 @@ public class UsuarioDAO {
         return listaDeUsuarios;
     }
 
+    public double getFolhaSalarial(List<Usuario> funcionarios){
+        double folhaSalarial = 0;
+        if(!listarTodosUsuarios().isEmpty()){
+            for(Usuario f : listarTodosUsuarios()){
+                folhaSalarial+= f.getCargo().getRemuneracao_base();
+            }
+        }
+        return folhaSalarial;
+    }
+    
     private Usuario getUsuario(ResultSet resultado) throws SQLException {
         Usuario usuario = new Usuario();
 
@@ -157,10 +167,6 @@ public class UsuarioDAO {
         } catch (SQLException e) {
 //            System.out.println("Error"+e.getMessage());
         }
-
-    }
-
-    public void validarAcesso() {
 
     }
 
